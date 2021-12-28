@@ -1,2 +1,3 @@
 # react-coffee
- Individual learning project
+
+Individual learning project
