@@ -4,7 +4,7 @@
   "description": "Individual learning project",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack --config ./build/webpack.dev.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.js",
     "prepare": "husky install"
   },
@@ -41,6 +41,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
     "prettier": "2.5.1",
