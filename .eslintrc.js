@@ -6,7 +6,6 @@ module.exports = {
   },
   extends: [
     'prettier',
-    'airbnb',
     'airbnb/hooks',
     'eslint:recommended',
     'plugin:react/recommended',
@@ -36,7 +35,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [2, { extensions: ['.tsx'] }],
     'react/require-default-props': [2, { forbidDefaultForRequired: true, ignoreFunctionalComponents: true }],
   },
 };
