@@ -4,11 +4,15 @@ import { Menus } from './menu';
 import { Headers } from './header';
 import { Contents } from './content';
 
+const layoutStyle = {
+  minHeight: '100vh',
+};
+
 const Layouts = function () {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={layoutStyle}>
       <Menus></Menus>
-      <Layout className="site-layout">
+      <Layout>
         <Headers></Headers>
         <Contents></Contents>
       </Layout>
