@@ -1,16 +1,12 @@
 import React from 'react';
+import { HashRouter } from 'react-router-dom';
+import Layouts from '@/pages/layouts';
 
-interface IProps {
-  name?: string;
-  age?: number;
-}
-
-function App(props: IProps) {
-  const { name, age } = props;
+function App() {
   return (
-    <div className="app">
-      <span>{`Hello! I'm ${name}, ${age} years old.`}</span>
-    </div>
+    <HashRouter>
+      <Layouts />
+    </HashRouter>
   );
 }
 

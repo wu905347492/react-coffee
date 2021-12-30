@@ -29,6 +29,21 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.(less|css)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
