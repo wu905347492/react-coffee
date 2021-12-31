@@ -10,5 +10,12 @@ module.exports = merge(common, {
     open: true,
     hot: true,
     historyApiFallback: true,
+    proxy: {
+      '/api/v1': {
+        target: 'http://m82-dev.hexcloud.cn',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
