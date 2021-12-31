@@ -1,7 +1,4 @@
-interface UploadFileInfo {
-  file: Record<string, unknown>;
-  fileList: [];
-}
+declare const NODE_ENV;
 
 declare module '@/pages/*' {
   export default React.Component;

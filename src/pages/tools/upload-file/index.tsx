@@ -4,7 +4,6 @@ import { UploadChangeParam } from 'antd/lib/upload';
 import { UploadOutlined } from '@ant-design/icons';
 import request from 'umi-request';
 import '../tools.scss';
-
 const UploadFile = () => {
   const customRequest = useCallback(async (params) => {
     const formData = new FormData();

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const { isProd } = require('./constants');
 
 const resolvePath = (_path) => path.resolve(__dirname, '..', _path);
@@ -109,6 +110,10 @@ module.exports = {
       template: resolvePath('public/index.html'),
       filename: 'index.html',
       cache: false,
+    }),
+    new webpack.DefinePlugin({
+      // Definitions...
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     }),
   ],
 };
