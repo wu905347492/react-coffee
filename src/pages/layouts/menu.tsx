@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { DesktopOutlined, PieChartOutlined, UserOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+
+import { Link, useLocation } from 'react-router-dom';
+import { routes } from '../../routers';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const Menus = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const { pathname } = useLocation();
 
   const onCollapse = (collapsed: boolean) => {
-    console.log(collapsed);
     setCollapsed(collapsed);
   };
 
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <div className="logo" />
-      <Menu theme="dark" defaultOpenKeys={['sub1']} defaultSelectedKeys={['3']} mode="inline">
-        <Menu.Item key="1" icon={<PieChartOutlined />}>
-          <Link to="/">Dashboard</Link>
-        </Menu.Item>
-        <Menu.Item key="2" icon={<DesktopOutlined />}>
-          <Link to="/user">User</Link>
-        </Menu.Item>
-        <SubMenu key="sub1" icon={<UserOutlined />} title="Tools">
-          <Menu.Item key="3">
-            <Link to="/tools/upload">Upload</Link>
-          </Menu.Item>
+      <Menu theme="dark" defaultSelectedKeys={[pathname]} selectedKeys={[pathname]} mode="inline">
+        {routes.map((item) => {
+          return (
+            <Menu.Item key={item.path} icon={item.icon}>
+              <Link to={item.path}>{item.name}</Link>
+            </Menu.Item>
+          );
+        })}
+        <SubMenu key="123" title="Tools">
+          <Menu.Item key="3">3</Menu.Item>
         </SubMenu>
       </Menu>
     </Sider>
