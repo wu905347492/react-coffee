@@ -1,10 +1,8 @@
-import React, { useState, useCallback } from 'react';
-import { Upload, List, Button, Card, Space, Image, message, Alert } from 'antd';
+import React, { useReducer, useCallback } from 'react';
+import { Upload, List, Button, Card, Space, Image, message, Alert, Row, Col } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import request from 'umi-request';
 import '../tools.scss';
-
-const initialList = JSON.parse(localStorage.getItem('fileList') || '[]');
 
 const copy = async (url: string) => {
   const clipboardObj = navigator.clipboard;
@@ -16,31 +14,31 @@ const copy = async (url: string) => {
   }
 };
 
-const UploadFileComponent = () => {
-  const [fileList, setFileList] = useState(initialList);
+function reducer(state: string[], action: string) {
+  localStorage.setItem('fileList', JSON.stringify([...state, action]));
+  return [...state, action];
+}
 
-  const customRequest = useCallback(
-    async (params) => {
-      const formData = new FormData();
-      const list: string[] = [];
-      formData.append('file', params.file);
-      request(`//m82-dev.hexcloud.cn/api/v1/lego/upload/`, {
-        method: 'POST',
-        data: formData,
-        mode: 'cors',
+const UploadFileComponent = () => {
+  const initialList = JSON.parse(localStorage.getItem('fileList') || '[]');
+  const [fileList, dispatch] = useReducer(reducer, initialList);
+
+  const customRequest = useCallback(async (params) => {
+    const formData = new FormData();
+    formData.append('file', params.file);
+    await request(`//m82-dev.hexcloud.cn/api/v1/lego/upload/`, {
+      method: 'POST',
+      data: formData,
+      mode: 'cors',
+    })
+      .then((resp) => {
+        dispatch(resp?.payload?.imageUrl);
+        return;
       })
-        .then((resp) => {
-          list.push(resp?.payload?.imageUrl);
-          localStorage.setItem('fileList', JSON.stringify([...fileList, ...list]));
-          setFileList([...fileList, ...list]);
-          return;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    [fileList],
-  );
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const props = {
     name: 'file',
@@ -50,11 +48,16 @@ const UploadFileComponent = () => {
   };
   return (
     <Card className="upload-container">
-      <Upload key="upload" {...props}>
-        <Button type="primary" icon={<UploadOutlined />}>
-          上传文件
-        </Button>
-      </Upload>
+      <Row>
+        <Col span={4}>
+          <Upload key="upload" {...props}>
+            <Button size="large" type="primary" icon={<UploadOutlined />}>
+              上传文件
+            </Button>
+          </Upload>
+        </Col>
+      </Row>
+
       {fileList.length !== 0 && (
         <Alert className="upload-message" message="点击链接可复制图片url" type="info" showIcon />
       )}
@@ -65,7 +68,7 @@ const UploadFileComponent = () => {
         renderItem={(item: string) => (
           <List.Item>
             <Space>
-              <Image width={100} src={item} />
+              <Image width={50} src={item} />
               <div
                 className="img-url"
                 onClick={() => {
