@@ -1,4 +1,13 @@
 .upload-container {
   width: 100%;
   height: 100%;
+  .upload-message {
+    margin-top: 20px;
+  }
+  .upload-img-list {
+    margin-top: 20px;
+    .img-url {
+      cursor: pointer;
+    }
+  }
 }

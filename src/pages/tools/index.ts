@@ -1,3 +1,3 @@
-import { UploadFile } from './upload-file';
+import { UploadFileComponent } from './upload-file';
 
-export { UploadFile };
+export { UploadFileComponent };

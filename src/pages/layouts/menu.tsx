@@ -5,7 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { routes } from '../../routers';
 
 const { Sider } = Layout;
-const { SubMenu } = Menu;
 
 const Menus = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -26,9 +25,6 @@ const Menus = () => {
             </Menu.Item>
           );
         })}
-        <SubMenu key="123" title="Tools">
-          <Menu.Item key="3">3</Menu.Item>
-        </SubMenu>
       </Menu>
     </Sider>
   );
