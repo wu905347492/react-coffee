@@ -10,7 +10,7 @@ module.exports = {
     app: resolvePath('src/index.tsx'),
   },
   output: {
-    filename: `js/[name]${isProd ? '.[hash:8]' : ''}.js`,
+    filename: `js/[name]${isProd ? '.[chunkhash:8]' : ''}.js`,
     path: resolvePath('dist'),
   },
   resolve: {
@@ -18,7 +18,6 @@ module.exports = {
     alias: {
       '@': resolvePath('src'),
       '@components': resolvePath('src/components'),
-      components: resolvePath('src/components'),
     },
   },
   module: {
