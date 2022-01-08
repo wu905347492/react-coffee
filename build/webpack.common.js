@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const { isProd } = require('./constants');
 
@@ -113,6 +114,16 @@ module.exports = {
     new webpack.DefinePlugin({
       // Definitions...
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          context: resolvePath('./public/assets'),
+          from: '*',
+          to: resolvePath('./dist/assets'),
+          toType: 'dir',
+        },
+      ],
     }),
   ],
 };
