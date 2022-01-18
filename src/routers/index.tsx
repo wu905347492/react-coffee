@@ -1,12 +1,23 @@
 import React from 'react';
-import { Dashboard } from '@/pages/dashboard';
-import { User } from '@/pages/user';
-import { UploadFileComponent } from '@/pages/tools';
-import { DesktopOutlined, PieChartOutlined, UserOutlined } from '@ant-design/icons';
 
-const routes = [
-  { path: '/', element: <Dashboard />, name: '首页', icon: <DesktopOutlined /> },
-  { path: '/user', element: <User />, name: '用户中心', icon: <UserOutlined /> },
-  { path: '/tools/upload', element: <UploadFileComponent />, name: '上传文件', icon: <PieChartOutlined /> },
+// Public Component
+import { Login } from '@/pages/login';
+
+// Private Component
+import { User } from '@/pages/user';
+import { Dashboard } from '@/pages/dashboard';
+import { UploadFileComponent } from '@/pages/tools';
+
+const publicRoutes = [{ key: 'login', path: '/login', element: <Login />, name: '登录' }];
+const privateRoutes = [
+  { key: 'dashboard', index: true, element: <Dashboard />, name: '后台中心' },
+  { key: 'user', path: '/user', element: <User />, name: '用户中心' },
+  {
+    key: 'upload',
+    path: '/tools/upload',
+    element: <UploadFileComponent />,
+    name: '上传文件',
+  },
 ];
-export { routes };
+
+export { publicRoutes, privateRoutes };

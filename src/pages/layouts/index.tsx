@@ -20,4 +20,4 @@ const Layouts = function () {
   );
 };
 
-export default Layouts;
+export { Layouts };

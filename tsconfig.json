@@ -19,7 +19,13 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/pages/*": ["src/pages/*"],
+      "@/components/*": ["src/components/*"],
+      "@/provider/*": ["src/provider/*"]
+    }
   },
   "include": ["types", "src/**/*"],
   "exclude": ["node_modules"]

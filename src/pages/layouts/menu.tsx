@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 
 import { Link, useLocation } from 'react-router-dom';
-import { routes } from '../../routers';
+import { privateRoutes } from '../../routers';
 
 const { Sider } = Layout;
+
+const menuMap = new Map([
+  ['dashboard', '/'],
+  ['user', '/user'],
+  ['upload', '/tools/upload'],
+]);
 
 const Menus = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,10 +24,10 @@ const Menus = () => {
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <div className="logo" />
       <Menu theme="dark" defaultSelectedKeys={[pathname]} selectedKeys={[pathname]} mode="inline">
-        {routes.map((item) => {
+        {privateRoutes.map((item) => {
           return (
-            <Menu.Item key={item.path} icon={item.icon}>
-              <Link to={item.path}>{item.name}</Link>
+            <Menu.Item key={menuMap.get(item.key)}>
+              <Link to={item.path || '/'}>{item.name}</Link>
             </Menu.Item>
           );
         })}
