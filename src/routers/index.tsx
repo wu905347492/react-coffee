@@ -1,23 +1,17 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { routes, routesProps } from './config';
 
-// Public Component
-import { Login } from '@/pages/login';
+const Routers = () => {
+  const recursionRoutes = (route: routesProps) => {
+    return (
+      <Route key={route.path} path={route.path} element={route.element}>
+        {route.children ? route.children.map(recursionRoutes) : null}
+      </Route>
+    );
+  };
 
-// Private Component
-import { User } from '@/pages/user';
-import { Dashboard } from '@/pages/dashboard';
-import { UploadFileComponent } from '@/pages/tools';
+  return <Routes>{recursionRoutes(routes)}</Routes>;
+};
 
-const publicRoutes = [{ key: 'login', path: '/login', element: <Login />, name: '登录' }];
-const privateRoutes = [
-  { key: 'dashboard', index: true, element: <Dashboard />, name: '后台中心' },
-  { key: 'user', path: '/user', element: <User />, name: '用户中心' },
-  {
-    key: 'upload',
-    path: '/tools/upload',
-    element: <UploadFileComponent />,
-    name: '上传文件',
-  },
-];
-
-export { publicRoutes, privateRoutes };
+export { Routers };
