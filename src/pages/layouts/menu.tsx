@@ -19,6 +19,7 @@ const Menus = () => {
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <div className="logo" />
       <Menu theme="dark" defaultSelectedKeys={[pathname]} selectedKeys={[pathname]} mode="inline">
+        1111
         {/* {privateRoutes.map((item) => {
           return (
             <Menu.Item key={menuMap.get(item.key)}>
